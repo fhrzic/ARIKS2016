@@ -33,6 +33,20 @@ parameters:
     
     
 resources:
+ security_group:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      name: LAMP_security_group
+      rules:
+        - port_range_min: 80
+          port_range_max: 80
+          protocol: tcp
+          direction: ingress
+        - port_range_min: 80
+          port_range_max: 80
+          protocol: tcp
+          direction: egress
+ 
   port:
     type: OS::Neutron::Port
     properties:
@@ -41,6 +55,8 @@ resources:
         - { get_param: security_group }
         - default
 
+ 
+ 
   client_instance:
     type: OS::Nova::Server
     properties:
