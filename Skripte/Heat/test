@@ -33,7 +33,7 @@ parameters:
     
     
 resources:
- security_group:
+  security_group:
     type: OS::Neutron::SecurityGroup
     properties:
       name: LAMP_security_group
