@@ -30,34 +30,35 @@ parameters:
     default: net04_ext
     
   resources:
-  security_group:
-    type: OS::Neutron::SecurityGroup
-    properties:
-      name: LAMP_security_group
-      rules:
-        - port_range_min: 80
-          port_range_max: 80
-          protocol: tcp
-          direction: ingress
-        - port_range_min: 80
-          port_range_max: 80
-          protocol: tcp
-          direction: egress
-  port:
-    type: OS::Neutron::Port
-    properties:
-      network: { get_param: private_network }
-      security_groups:
-        - { get_param: security_group }
-        - default
-  my_instance:
-    type: OS::Nova::Server
-    properties:
-      image: ubuntu_cloud14
-      flavor: m1.small
-      key_name: { get_param: key }
-      networks:
-        - port: { get_resource: port }
+    security_group:
+      type: OS::Neutron::SecurityGroup
+      properties:
+        name: LAMP_security_group
+        rules:
+          - port_range_min: 80
+            port_range_max: 80
+            protocol: tcp
+            direction: ingress
+          - port_range_min: 80
+            port_range_max: 80
+            protocol: tcp
+            direction: egress
+    port:
+      type: OS::Neutron::Port
+      properties:
+        network: { get_param: private_network }
+        security_groups:
+          - { get_param: security_group }
+          - default
+    
+    my_instance:
+      type: OS::Nova::Server
+      properties:
+        image: ubuntu_cloud14
+        flavor: m1.small
+        key_name: { get_param: key }
+        networks:
+          - port: { get_resource: port }
   
   
   
