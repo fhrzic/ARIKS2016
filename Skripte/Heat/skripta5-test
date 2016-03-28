@@ -66,3 +66,8 @@ resources:
       public_network: { get_param: public_network }
       service_server: { get_attr: [service, ip] }
       security_group: { get_resource: security_group }
+ 
+  acces_resourse:
+    type: OS::Heat::AccessPolicy
+    properties:
+      AllowedResources: [service]
