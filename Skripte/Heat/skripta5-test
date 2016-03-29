@@ -67,7 +67,7 @@ resources:
       service_server: { get_attr: [service, ip] }
       security_group: { get_resource: security_group }
  
-  acces_resourse:
+  access_resourse:
     type: OS::Heat::AccessPolicy
     properties:
       AllowedResources: [service]
